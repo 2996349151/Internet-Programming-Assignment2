@@ -1,0 +1,2 @@
+[tool.Black]
+line-length = 88

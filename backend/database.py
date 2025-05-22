@@ -24,19 +24,19 @@ class MYDB:
             return result[0] if result else None
 
     # Order a car and set the availability to false for the ordered car
-    def order_car(self, customerName, customerEmail, customerPhone, startDate, endDate, driverLicense, vin):
+    def order_car(self, customerName, customerEmail, customerPhone, startDate, rentPeriod, driverLicense, vin):
         with self.engine.connect() as connection:
-            connection.execute(text("INSERT INTO Orders (customerName, customerEmail, customerPhone, startDate, endDate, driverLicense, vin) VALUES (:customerName, :customerEmail, :customerPhone, :startDate, :endDate, :driverLicense, :vin)"), {
+            connection.execute(text("INSERT INTO Orders (customerName, customerEmail, customerPhone, startDate, rentPeriod, driverLicense, vin) VALUES (:customerName, :customerEmail, :customerPhone, :startDate, :rentPeriod, :driverLicense, :vin)"), {
                 "customerName": customerName,
                 "customerEmail": customerEmail,
                 "customerPhone": customerPhone,
                 "startDate": startDate,
-                "endDate": endDate,
+                "rentPeriod": rentPeriod,
                 "driverLicense": driverLicense,
                 "vin": vin
             })
             connection.commit()
         with self.engine.connect() as connection:
-            connection.execute(text("UPDATE Cars SET availability = false WHERE vin = :vin"), {"vin": vin})
+            connection.execute(text("UPDATE Cars SET available = false WHERE vin = :vin"), {"vin": vin})
             connection.commit()
             return True

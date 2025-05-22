@@ -24,7 +24,7 @@ CREATE TABLE Orders (
     customerEmail VARCHAR(100) NOT NULL,
     customerPhone VARCHAR(15) NOT NULL,
     startDate DATE NOT NULL,
-    endDate DATE NOT NULL,
+    rentPeriod INT NOT NULL,
     driverLicense VARCHAR(50) NOT NULL, 
     vin VARCHAR(17) NOT NULL,
     FOREIGN KEY (vin) REFERENCES Cars(vin)
@@ -33,11 +33,11 @@ CREATE TABLE Orders (
 INSERT INTO Cars (vin, carType, brand, carModel, image, yearOfManufacture, mileage, fuelType, available, pricePerDay, description) VALUES
 ('1HGCM82633A000001', 'Sedan', 'Honda', 'Accord', 'accord.jpg', 2018, '35000', 'Petrol', TRUE, 50, 'Comfortable and reliable sedan.'),
 ('1HGCM82633A000002', 'SUV', 'Toyota', 'RAV4', 'rav4.jpg', 2020, '22000', 'Hybrid', TRUE, 65, 'Spacious SUV with hybrid engine.'),
-('1HGCM82633A000003', 'Sedan', 'Toyota', 'Camry', 'camry.jpg', 2019, '28000', 'Petrol', TRUE, 55, 'Popular mid-size sedan.'),
+('1HGCM82633A000003', 'Sedan', 'Toyota', 'Camry', 'camry.jpg', 2019, '28000', 'Petrol', FALSE, 55, 'Popular mid-size sedan.'),
 ('1HGCM82633A000004', 'Hatchback', 'Volkswagen', 'Golf', 'golf.jpg', 2017, '40000', 'Diesel', TRUE, 45, 'Efficient hatchback for city driving.'),
 ('1HGCM82633A000005', 'SUV', 'Ford', 'Explorer', 'explorer.jpg', 2021, '15000', 'Petrol', TRUE, 80, 'Large SUV with advanced features.'),
-('1HGCM82633A000006', 'Sedan', 'BMW', '3 Series', 'bmw3.jpg', 2018, '32000', 'Petrol', TRUE, 90, 'Luxury sedan with sporty feel.'),
-('1HGCM82633A000007', 'SUV', 'Audi', 'Q5', 'audiq5.jpg', 2019, '25000', 'Diesel', TRUE, 100, 'Premium SUV with comfort.'),
+('1HGCM82633A000006', 'Sedan', 'BMW', '3 Series', 'bmw3.jpg', 2018  , '32000', 'Petrol', TRUE, 90, 'Luxury sedan with sporty feel.'),
+('1HGCM82633A000007', 'SUV', 'Audi', 'Q5', 'audiq5.jpg', 2019, '25000', 'Diesel', FALSE, 100, 'Premium SUV with comfort.'),
 ('1HGCM82633A000008', 'Convertible', 'Mazda', 'MX-5', 'mx5.jpg', 2020, '12000', 'Petrol', TRUE, 70, 'Fun convertible for sunny days.'),
 ('1HGCM82633A000009', 'Sedan', 'Mercedes', 'C-Class', 'cclass.jpg', 2017, '41000', 'Petrol', TRUE, 95, 'Elegant and comfortable sedan.'),
 ('1HGCM82633A000010', 'SUV', 'Hyundai', 'Tucson', 'tucson.jpg', 2021, '10000', 'Hybrid', TRUE, 60, 'Modern SUV with hybrid tech.'),
@@ -63,7 +63,3 @@ INSERT INTO Cars (vin, carType, brand, carModel, image, yearOfManufacture, milea
 ('1HGCM82633A000030', 'Sedan', 'Volkswagen', 'Passat', 'passat.jpg', 2017, '43000', 'Diesel', TRUE, 52, 'Spacious and efficient sedan.');
 
 -- Insert 3 orders (using vins from above)
-INSERT INTO Orders (customerName, customerEmail, customerPhone, startDate, endDate, driverLicense, vin) VALUES
-('Alice Smith', 'alice@example.com', '1234567890', '2025-05-01', '2025-05-05', 'D1234567', '1HGCM82633A000001'),
-('Bob Johnson', 'bob@example.com', '2345678901', '2025-05-10', '2025-05-15', 'D2345678', '1HGCM82633A000005'),
-('Charlie Lee', 'charlie@example.com', '3456789012', '2025-05-20', '2025-05-22', 'D3456789', '1HGCM82633A000016');

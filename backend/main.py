@@ -44,7 +44,7 @@ class Order(BaseModel):
     customerEmail: str
     customerPhone: str
     startDate: str
-    endDate: str
+    rentPeriod: int
     driverLicense: str
     vin: str
     
@@ -54,7 +54,7 @@ def place_order(order: Order):
     availability = DB.check_availability(order.vin)
     if availability:
         # Place the order
-        DB.order_car(order.customerName, order.customerEmail, order.customerPhone, order.startDate, order.endDate, order.driverLicense, order.vin)
+        DB.order_car(order.customerName, order.customerEmail, order.customerPhone, order.startDate, order.rentPeriod, order.driverLicense, order.vin)
         return {"message": "Order placed successfully"}
     else:
         return {"error": "Car not available"}

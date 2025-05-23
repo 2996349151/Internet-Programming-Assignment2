@@ -18,22 +18,24 @@ function Order() {
 
   return (
     <div>
-      <p>Orders:</p>
       <Button onClick={() => navigate('/')}>Back to Home</Button>
-      <ul>
-        {orders.map((order) => (
-          <li key={order.id}>
-            <p>Order ID: {order.orderID}</p>
-            <p>Customer Name: {order.customerName}</p>
-            <p>Customer Email: {order.customerEmail}</p>
-            <p>Customer Phone: {order.customerPhone}</p>
-            <p>Driver License: {order.driverLicense}</p>
-            <p>Car VIN: {order.vin}</p>
-            <p>Start Date: {order.startDate}</p>
-            <p>Rent Period: {order.rentPeriod} days</p>
-          </li>
-        ))}
-      </ul>
+      <p>Orders:</p>
+      <Space>
+        <ul>
+          {orders.map((order) => (
+            <li key={order.id}>
+              <p>Order ID: {order.orderID}</p>
+              <p>Customer Name: {order.customerName}</p>
+              <p>Customer Email: {order.customerEmail}</p>
+              <p>Customer Phone: {order.customerPhone}</p>
+              <p>Driver License: {order.driverLicense}</p>
+              <p>Car VIN: {order.vin}</p>
+              <p>Start Date: {order.startDate}</p>
+              <p>Rent Period: {order.rentPeriod} days</p>
+            </li>
+          ))}
+        </ul>
+      </Space>
     </div>
   );
 }

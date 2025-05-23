@@ -114,10 +114,9 @@ function Homepage() {
   return (
     <div>
       {contextHolder}
-      <h1>Welcome to the Homepage</h1>
-      <p>This is the main page of our application.</p>
 
       <Space>
+        <p>Search:</p>
         <AutoComplete
           style={{ width: 200 }}
           options={selectedSuggestions}
@@ -128,7 +127,7 @@ function Homepage() {
         />
         <p>Cat type:</p>
         <Select
-          style={{ width: 200 }}
+          style={{ width: 150 }}
           placeholder="Car Type"
           allowClear
           value={carType}
@@ -142,7 +141,7 @@ function Homepage() {
         </Select>
         <p>Brand:</p>
         <Select
-          style={{ width: 200 }}
+          style={{ width: 150 }}
           placeholder="Brand"
           allowClear
           value={brand}
@@ -179,7 +178,14 @@ function Homepage() {
               handleClickCard(selectedCars[index]);
             }}
           >
-            <img src={selectedCars[index].image} alt="Car image" />
+            <img
+              src={'cars/' + selectedCars[index].image}
+              alt="Car image"
+              style={{
+                width: '100%',
+                height: '140px',
+              }}
+            />
             <p>Year of manifacture: {selectedCars[index].yearOfManifacture}</p>
             <p>Mileage: {selectedCars[index].mileage}</p>
             <p>Fuel Type: {selectedCars[index].fuelType}</p>

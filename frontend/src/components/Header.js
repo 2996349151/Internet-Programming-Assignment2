@@ -2,9 +2,15 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <header>
+    <header
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Link to="/">
-        <p>Logo Image</p>
+        <img src="car rental logo.jpeg" alt="Logo" />
       </Link>
     </header>
   );

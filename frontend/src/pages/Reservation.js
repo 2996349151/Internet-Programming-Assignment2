@@ -19,7 +19,6 @@ function Reservation() {
     setIsFormValid(isValid);
   }
   useEffect(() => {
-    // Validate fields on mount or when reservationForm changes
     form
       .validateFields()
       .then(() => setIsFormValid(true))
@@ -58,9 +57,8 @@ function Reservation() {
   }
   if (!selectedCar) {
     return (
-      <div>
-        <h1>Reservation Page</h1>
-        <p>No car selected.</p>
+      <div style={{ width: '80%', maxWidth: '600px', margin: '0 auto' }}>
+        <p>No car selected. Please select one car.</p>
         <Button onClick={() => navigate('/')}>Back to Home</Button>
       </div>
     );
@@ -69,9 +67,8 @@ function Reservation() {
   if (!selectedCar.available) {
     return (
       <div style={{ width: '80%', maxWidth: '600px', margin: '0 auto' }}>
-        <h1>Reservation Page</h1>
         <p>{`${selectedCar.brand} ${selectedCar.carModel} ${selectedCar.carType}`}</p>
-        <img src={selectedCar.image} alt="Car" style={{ width: '100%' }} />
+        <img src={'cars/' + selectedCar.image} alt="Car" style={{ width: '100%' }} />
         <p>Year: {selectedCar.yearOfManufacture}</p>
         <p>Mileage: {selectedCar.mileage}</p>
         <p>Fuel Type: {selectedCar.fuelType}</p>
@@ -87,8 +84,6 @@ function Reservation() {
 
   return (
     <div>
-      <h1>Reservation Page</h1>
-      <p>This is the reservation page.</p>
       {contextHolder}
       <Form
         form={form}
@@ -101,7 +96,7 @@ function Reservation() {
         <Form.Item label="Car Details">
           <br />
           <p>{`${selectedCar.brand} ${selectedCar.carModel} ${selectedCar.carType}`}</p>
-          <img src={selectedCar.image} alt="Car" style={{ width: '100%' }} />
+          <img src={'cars/' + selectedCar.image} alt="Car" style={{ width: '100%' }} />
           <p>Year: {selectedCar.yearOfManufacture}</p>
           <p>Mileage: {selectedCar.mileage}</p>
           <p>Fuel Type: {selectedCar.fuelType}</p>
@@ -138,7 +133,11 @@ function Reservation() {
         >
           <Input />
         </Form.Item>
-        <Form.Item label="Start Date" name="startDate">
+        <Form.Item
+          label="Start Date"
+          name="startDate"
+          rules={[{ required: true, message: 'Please input the start date!' }]}
+        >
           <Input type="date" />
         </Form.Item>
         <Form.Item
@@ -176,6 +175,7 @@ function Reservation() {
             </div>
           )}
           <Button onClick={() => navigate('/')}>Home</Button>
+          <span style={{ display: 'inline-block', width: 16 }} />
           <Button type="primary" disabled={!isFormValid} onClick={() => handleConfirmRent()}>
             Confirm Rent
           </Button>

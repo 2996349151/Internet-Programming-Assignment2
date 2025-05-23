@@ -19,18 +19,21 @@ DB = MYDB()
 def read_root():
     return {"Hello": "World"}
 
+# get all cars
 @app.get("/cars")
 def get_all_cars():
     cars = DB.get_all_cars()
     cars = [dict(car._mapping) for car in cars]
     return {"cars": cars}
 
+# get all orders
 @app.get("/orders")
 def get_all_orders():
     orders = DB.get_all_orders()
     orders = [dict(order._mapping) for order in orders]
     return {"orders": orders}
 
+# check the availability of a car by vin number
 @app.get("/check_availability/{vin}")
 def check_availability(vin: str):
     availability = DB.check_availability(vin)
@@ -48,6 +51,7 @@ class Order(BaseModel):
     driverLicense: str
     vin: str
     
+# order a car and set the availability to false for the ordered car
 @app.post("/place_order")
 def place_order(order: Order):
     # Check if the car is available
@@ -58,3 +62,4 @@ def place_order(order: Order):
         return {"message": "Order placed successfully"}
     else:
         return {"error": "Car not available"}
+    
